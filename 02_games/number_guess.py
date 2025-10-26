@@ -4,14 +4,18 @@ import os
 # Step 1: Pick a random number
 secret = random.randint(1, 100)
 
-# Step 2: Read previous high score (if file exists)
+# Step 2: Read previous high score (if exists)
 highscore_file = "highscore.txt"
 if os.path.exists(highscore_file):
     with open(highscore_file, "r") as file:
         content = file.read().strip()
-        highscore = int(content) if content.isdigit() else None
+        if ":" in content:
+            highscore_name, highscore_value = content.split(":")
+            highscore_value = int(highscore_value)
+        else:
+            highscore_name, highscore_value = None, None
 else:
-    highscore = None
+    highscore_name, highscore_value = None, None
 
 # Step 3: Set difficulty
 difficulty = input("Enter difficulty level (Easy/Hard): ").strip().lower()
@@ -24,10 +28,15 @@ else:
     exit()
 
 print("\n🎯 I'm thinking of a number between 1 and 100...")
-if highscore:
-    print(f"🏆 Current High Score: {highscore} attempts")
 
-# Step 4: Game loop
+# Show current record if it exists
+if highscore_name:
+    print(f"🏆 Current High Score — {highscore_name}: {highscore_value} attempts")
+
+# Step 4: Get player name
+player_name = input("\nEnter your name: ").strip().capitalize()
+
+# Step 5: Game loop
 initial_attempts = attempts
 while attempts > 0:
     print(f"\nAttempts left: {attempts}")
@@ -48,11 +57,13 @@ while attempts > 0:
         print(f"\n🎉 You got it! The number was {secret}.")
         print(f"You used {used} attempts.")
 
-        # Step 5: Update high score if needed
-        if highscore is None or used < highscore:
+        # Step 6: Update high score if needed
+        if highscore_value is None or used < highscore_value:
             with open(highscore_file, "w") as file:
-                file.write(str(used))
-            print("🏅 New High Score! 🎊")
+                file.write(f"{player_name}:{used}")
+            print(f"🏅 New High Score! 🎊 Congrats, {player_name}!")
+        else:
+            print(f"🙌 You didn’t beat {highscore_name}'s score of {highscore_value} attempts.")
         break
 else:
     print(f"\n💀 Out of attempts! The number was {secret}. Better luck next time!")
