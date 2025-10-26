@@ -12,23 +12,21 @@ This repository documents my progress from **Python fundamentals → DSA → sys
 - Building real-world mini projects  
 - Preparing for Big Tech interviews (FAANG-level)
 
----
-
 ## 🧩 Project Structure
 python-learning-track/
-|
-|----01_basics/
-|  |--calculator.py
-|  |__loops_practice.py
-|
-|----02_games/
-|  |--number_guess.py
-|  |__rps_game.py
-|
-|____03_projects/
-|  |__expense_tracker/
-|
-|____README.md
+│
+├── 01_basics/
+│ ├── calculator.py
+│ └── loops_practice.py
+│
+├── 02_games/
+│ ├── number_guess.py
+│ └── rps_game.py
+│
+├── 03_projects/
+│ └── expense_tracker/
+│
+└── README.md|
 
 ---
 
@@ -49,7 +47,7 @@ python-learning-track/
 ---
 
 ## 🧑‍💻 Author
-**Honey**  
+**Gurminder**  
 _Aspiring Software Engineer | Learning DSA, System Design, and Full-Stack Development_
 
 ---
